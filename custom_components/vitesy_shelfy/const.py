@@ -1,5 +1,8 @@
+
+# const.py
 DOMAIN = "vitesy_shelfy"
 
+# Auth config keys
 CONF_EMAIL = "email"
 CONF_PASSWORD = "password"
 
@@ -20,9 +23,17 @@ DEVICES_URL = f"{API_BASE_URL}/devices"
 MEASUREMENTS_URL = f"{API_BASE_URL}/measurements"
 MAINTENANCE_URL_TEMPLATE = f"{API_BASE_URL}/devices/{{device_id}}/maintenance"
 
-# Other
-DEFAULT_SCAN_INTERVAL = 300  # seconds
+# Polling defaults
+# Keep a seconds-based default for internal consistency with HA conventions,
+# and derive a minutes-based default for the UI Options flow.
+DEFAULT_SCAN_INTERVAL = 900  # seconds (15 minutes)
+
+# Options Flow: UI-editable polling interval in minutes
+OPTION_POLL_MINUTES = "polling_minutes"
+DEFAULT_POLL_MINUTES = max(1, DEFAULT_SCAN_INTERVAL // 60)
+
+# Common headers for OAuth requests
 OAUTH_HEADERS = {
     "Content-Type": "application/x-www-form-urlencoded",
-    "Accept": "application/json"
+    "Accept": "application/json",
 }
