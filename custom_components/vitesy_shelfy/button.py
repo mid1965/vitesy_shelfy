@@ -10,7 +10,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     coordinator = hass.data[DOMAIN][entry.entry_id]
     entities = []
 
-    for device in coordinator.data:
+    for device in coordinator.data.values():
         device_id = device["id"].replace(":", "")
         device_id_orig = device["id"]
         device_type = device.get("type", "Unknown").capitalize()
